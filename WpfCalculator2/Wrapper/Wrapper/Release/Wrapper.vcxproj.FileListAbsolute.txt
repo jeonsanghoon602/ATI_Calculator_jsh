@@ -1,5 +1,0 @@
-C:\Users\sanghoon\source\repos\WpfCalculator2\Release\Ijwhost.dll
-C:\Users\sanghoon\source\repos\WpfCalculator2\Release\Wrapper.deps.json
-C:\Users\sanghoon\source\repos\WpfCalculator2\Release\Wrapper.runtimeconfig.json
-C:\Users\sanghoon\source\repos\WpfCalculator2\Wrapper\Wrapper\Release\Wrapper.vcxproj.AssemblyReference.cache
-C:\Users\sanghoon\source\repos\WpfCalculator2\Wrapper\Wrapper\Release\Wrapper.genruntimeconfig.cache

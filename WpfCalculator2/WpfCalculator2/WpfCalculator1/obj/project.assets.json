@@ -1,0 +1,98 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0-windows7.0": {
+      "Wrapper/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Wrapper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Wrapper.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Wrapper/1.0.0": {
+      "type": "project",
+      "path": "../Wrapper/Wrapper/Wrapper.vcxproj",
+      "msbuildProject": "../Wrapper/Wrapper/Wrapper.vcxproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0-windows7.0": [
+      "Wrapper >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\kalon\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\kalon\\Documents\\GitHub\\ATI_Calculator_jsh\\WpfCalculator2\\WpfCalculator1\\WpfCalculator1.csproj",
+      "projectName": "WpfCalculator1",
+      "projectPath": "C:\\Users\\kalon\\Documents\\GitHub\\ATI_Calculator_jsh\\WpfCalculator2\\WpfCalculator1\\WpfCalculator1.csproj",
+      "packagesPath": "C:\\Users\\kalon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kalon\\Documents\\GitHub\\ATI_Calculator_jsh\\WpfCalculator2\\WpfCalculator1\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\kalon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "projectReferences": {
+            "C:\\Users\\kalon\\Documents\\GitHub\\ATI_Calculator_jsh\\WpfCalculator2\\Wrapper\\Wrapper\\Wrapper.vcxproj": {
+              "projectPath": "C:\\Users\\kalon\\Documents\\GitHub\\ATI_Calculator_jsh\\WpfCalculator2\\Wrapper\\Wrapper\\Wrapper.vcxproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+C:\Users\kalon\Documents\GitHub\ATI_Calculator_jsh\WpfCalculator2\Wrapper\Debug\Ijwhost.dll
+C:\Users\kalon\Documents\GitHub\ATI_Calculator_jsh\WpfCalculator2\Wrapper\Debug\Wrapper.deps.json
+C:\Users\kalon\Documents\GitHub\ATI_Calculator_jsh\WpfCalculator2\Wrapper\Debug\Wrapper.runtimeconfig.json
+C:\Users\kalon\Documents\GitHub\ATI_Calculator_jsh\WpfCalculator2\Wrapper\Wrapper\Debug\Wrapper.sourcelink.json
+C:\Users\kalon\Documents\GitHub\ATI_Calculator_jsh\WpfCalculator2\Wrapper\Wrapper\Debug\Wrapper.genruntimeconfig.cache
