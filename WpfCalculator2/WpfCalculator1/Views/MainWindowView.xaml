@@ -1,0 +1,193 @@
+﻿<Window x:Class="WpfCalculator1.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCalculator1.Views" xmlns:viewmodels="clr-namespace:WpfCalculator1.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModels}"
+        mc:Ignorable="d"
+        Title="계산기" Height="600" Width="500" MinWidth="600" MinHeight="600">
+
+    <Window.Resources>
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Margin="1" Background="{TemplateBinding Background}" CornerRadius="3" BorderThickness="1" BorderBrush="DarkGray">
+                            <Grid>
+                                <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property = "Background" Value="GhostWhite"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="BtnStyle2" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Margin="1" Background="{TemplateBinding Background}" BorderBrush="DarkGray">
+                            <Grid>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="FontSize" Value="9" />
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property = "Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="BtnStyle3" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Margin="1" Background="{TemplateBinding Background}" CornerRadius="3" BorderThickness="1" BorderBrush="DarkGray">
+                            <Grid>
+                                <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property = "Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid MinWidth="550" MinHeight="500">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Column="1" Grid.RowSpan="5">
+            <TabItem Header="Memory">
+                <ListView ItemsSource="{Binding Memory}" 
+                  SelectedItem="{Binding SelectedMemory, Mode=TwoWay}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Memory}" Width="150" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="History">
+                <ListView ItemsSource="{Binding Hisory}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding History}" Width="150" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+
+        <DockPanel Grid.Row="0" LastChildFill="False">
+            <Button Width="50" Height="20" Style="{StaticResource BtnStyle2}" DockPanel.Dock="Left">
+
+            </Button>
+            <Button Width="50" Height="20" Style="{StaticResource BtnStyle2}" DockPanel.Dock="Left">
+
+            </Button>
+            <Button Width="50" Height="20" Style="{StaticResource BtnStyle2}" DockPanel.Dock="Right">
+                <Image Source="/Resources/clock.png" />
+            </Button>
+        </DockPanel>
+        <TextBlock x:Name="lastTextBlock" HorizontalAlignment= "Right" Grid.Row="1" Height="100" Margin="10" FontSize="15" Text="{Binding DisplayData}"/>
+        <TextBlock x:Name="currentTextBlock" HorizontalAlignment= "Right" Grid.Row="2" Height="100" Margin="10"  FontSize="20" Text="{Binding InputData}"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Button Width="40" Height="20" Command ="{Binding MemoryClear}" Style="{StaticResource BtnStyle2}">MC</Button>
+            <Button Width="40" Height="20" Command ="{Binding MemorySum}" Style="{StaticResource BtnStyle2}">M+</Button>
+            <Button Width="40" Height="20" Command ="{Binding MemorySubtrac}" Style="{StaticResource BtnStyle2}">M-</Button>
+            <Button Width="40" Height="20" Command ="{Binding SaveMemoryCommand}" Style="{StaticResource BtnStyle2}">MS</Button>
+        </StackPanel>
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Tag ="Button_Percent" Grid.Column="0" Grid.Row="0" Command ="{Binding DataExpendCalculator}" CommandParameter="Percent" Style="{StaticResource BtnStyle}">
+                <Image Width="15" Height="15" Source="/Resources/percent_discount_icon.png" />
+            </Button>
+            <Button Tag ="Button_Allcancle" Grid.Column="1" Grid.Row="0" Command ="{Binding DataClear}" Style="{StaticResource BtnStyle}">CE</Button>
+            <Button Tag ="Button_cancle" Grid.Column="2" Grid.Row="0"  Command ="{Binding DataAllClear}" Style="{StaticResource BtnStyle}">C</Button>
+            <Button Tag ="Button_Backspace" Grid.Column="3" Grid.Row="0" Command ="{Binding DataBack}" Style="{StaticResource BtnStyle}">
+                <Image Width="15" Height="15" Source="/Resources/backspace_icon.png" />
+            </Button>
+            <Button Tag ="Button_Exponent" Grid.Column="0" Grid.Row="1" Command ="{Binding DataExpendCalculator}" CommandParameter="Exponent" Style="{StaticResource BtnStyle}">1/x</Button>
+            <Button Tag ="Button_Square" Grid.Column="1" Grid.Row="1" Command ="{Binding DataExpendCalculator}" CommandParameter="Square" Style="{StaticResource BtnStyle}">X^2</Button>
+            <Button Tag ="Button_Root" Grid.Column="2" Grid.Row="1" Command ="{Binding DataExpendCalculator}" CommandParameter="Root" Style="{StaticResource BtnStyle}">√</Button>
+            <Button Tag ="Button_Divide" Grid.Column="3" Grid.Row="1" Command ="{Binding DataOperator}" CommandParameter="/" Style="{StaticResource BtnStyle}">
+                <Image Width="15" Height="15" Source="/Resources/divide_icon.png" />
+            </Button>
+            <Button Tag ="Button_7" Grid.Column="0" Grid.Row="2" Command ="{Binding DataInsert}" CommandParameter="7" Style="{StaticResource BtnStyle3}">7</Button>
+            <Button Tag ="Button_8" Grid.Column="1" Grid.Row="2" Command ="{Binding DataInsert}" CommandParameter="8" Style="{StaticResource BtnStyle3}">8</Button>
+            <Button Tag ="Button_9" Grid.Column="2" Grid.Row="2" Command ="{Binding DataInsert}" CommandParameter="9" Style="{StaticResource BtnStyle3}">9</Button>
+            <Button Tag ="Button_Multi" Grid.Column="3" Grid.Row="2" Command ="{Binding DataOperator}" CommandParameter="*" Style="{StaticResource BtnStyle}">
+                <Image Width="15" Height="15" Source="/Resources/x_icon.png" />
+            </Button>
+            <Button Tag ="Button_4" Grid.Column="0" Grid.Row="3" Command ="{Binding DataInsert}" CommandParameter="4" Style="{StaticResource BtnStyle3}">4</Button>
+            <Button Tag ="Button_5" Grid.Column="1" Grid.Row="3" Command ="{Binding DataInsert}" CommandParameter="5" Style="{StaticResource BtnStyle3}">5</Button>
+            <Button Tag ="Button_6" Grid.Column="2" Grid.Row="3" Command ="{Binding DataInsert}" CommandParameter="6" Style="{StaticResource BtnStyle3}">6</Button>
+            <Button Tag ="Button_Minus" Grid.Column="3" Grid.Row="3" Command ="{Binding DataOperator}" CommandParameter="-" Style="{StaticResource BtnStyle}">
+                <Image Width="15" Height="15" Source="/Resources/minus_icon.png" />
+            </Button>
+            <Button Tag ="Button_1" Grid.Column="0" Grid.Row="4" Command ="{Binding DataInsert}" CommandParameter="1" Style="{StaticResource BtnStyle3}">1</Button>
+            <Button Tag ="Button_2" Grid.Column="1" Grid.Row="4" Command ="{Binding DataInsert}" CommandParameter="2" Style="{StaticResource BtnStyle3}">2</Button>
+            <Button Tag ="Button_3" Grid.Column="2" Grid.Row="4" Command ="{Binding DataInsert}" CommandParameter="3" Style="{StaticResource BtnStyle3}">3</Button>
+            <Button Tag ="Button_Plus" Grid.Column="3" Grid.Row="4" Command ="{Binding DataOperator}" CommandParameter="+" Style="{StaticResource BtnStyle}">
+                +
+            </Button>
+            <Button Tag ="Button_Negative" Grid.Column="0" Grid.Row="5" Style="{StaticResource BtnStyle3}">+/-</Button>
+            <Button Tag ="Button_0" Grid.Column="1" Grid.Row="5" Command ="{Binding DataInsert}" CommandParameter="0" Style="{StaticResource BtnStyle3}">0</Button>
+            <Button Tag ="Button_Dot" Grid.Column="2" Grid.Row="5" Style="{StaticResource BtnStyle3}">.</Button>
+            <Button Tag ="Button_Equal" Grid.Column="3" Grid.Row="5" Command ="{Binding DataCalculator}" Style="{StaticResource BtnStyle}">
+                <Image Width="15" Height="15" Source="/Resources/equals_icon.png" />
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>calculator_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\backspace_icon.png" />
+    <None Remove="Resources\calculator_icon.ico" />
+    <None Remove="Resources\clock.png" />
+    <None Remove="Resources\divide_icon.png" />
+    <None Remove="Resources\equals_icon.png" />
+    <None Remove="Resources\external_link_icon.png" />
+    <None Remove="Resources\menu_navigation_icon.png" />
+    <None Remove="Resources\minus_icon.png" />
+    <None Remove="Resources\percent_discount_icon.png" />
+    <None Remove="Resources\plus_icon.png" />
+    <None Remove="Resources\plus_minus_icon.png" />
+    <None Remove="Resources\x_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wrapper\Wrapper\Wrapper.vcxproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\backspace_icon.png" />
+    <Resource Include="Resources\calculator_icon.ico" />
+    <Resource Include="Resources\clock.png" />
+    <Resource Include="Resources\divide_icon.png" />
+    <Resource Include="Resources\equals_icon.png" />
+    <Resource Include="Resources\external_link_icon.png" />
+    <Resource Include="Resources\menu_navigation_icon.png" />
+    <Resource Include="Resources\minus_icon.png" />
+    <Resource Include="Resources\percent_discount_icon.png" />
+    <Resource Include="Resources\plus_icon.png" />
+    <Resource Include="Resources\plus_minus_icon.png" />
+    <Resource Include="Resources\x_icon.png" />
+  </ItemGroup>
+
+</Project>
