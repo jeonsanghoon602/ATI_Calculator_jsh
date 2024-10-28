@@ -38,6 +38,7 @@ namespace WpfCalculator1.ViewModels
         public ICommand MemorySum { protected get; set; }
         public ICommand MemorySubtrac { protected get; set; }
         public ICommand MemoryClear { protected get; set; }
+        public ICommand DataDotInsert { protected get; set; }
 
         public MainWindowViewModels()
         {
@@ -51,6 +52,7 @@ namespace WpfCalculator1.ViewModels
             this.DataCalculator = new DataCalculator(this);
             this.DataExpendCalculator = new DataExpendCalculator(this);
             this.DataAllClear = new DataAllClear(this);
+            this.DataDotInsert = new DataDotInsert(this);
             SaveMemoryCommand = new RelayCommand<string>(SaveMemory);
             MemorySum = new RelayCommand<string>(SumMemory);
             MemorySubtrac = new RelayCommand<string>(SubtracMemory);
@@ -113,7 +115,7 @@ namespace WpfCalculator1.ViewModels
             {
                 if (_selectedmemory != null)
                 {
-                    InputData = DisplayData = _selectedmemory.Memory;
+                    InputData = _selectedmemory.Memory;
                 }
                 return _selectedmemory;
             }
@@ -123,6 +125,7 @@ namespace WpfCalculator1.ViewModels
                 OnPropertyChanged(nameof(SelectedMemory));
             }
         }
+
         public void AddHistory(string paramerter)
         {
             if (InputData != "")
@@ -144,15 +147,17 @@ namespace WpfCalculator1.ViewModels
             double result = 0;
             string str = "";
             double value = 0;
+            double value2 = 0;
 
             if (InputData != "" && _modelMemories.Count > 0)
             {
                 str = _modelMemories[0].Memory;
+
                 value = double.Parse(str);
-                result = arithmetic.Add(value, value);
-                InputData = result.ToString();
+                value2 = double.Parse(InputData);
+                result = arithmetic.Add(value, value2);
                 _modelMemories.RemoveAt(0);
-                _modelMemories.Insert(0, new ModelMemory { Memory = InputData });
+                _modelMemories.Insert(0, new ModelMemory { Memory = string.Format("{0:0.00#}",result) });
             }
         }
 
@@ -161,15 +166,16 @@ namespace WpfCalculator1.ViewModels
             double result = 0;
             string str = "";
             double value = 0;
+            double value2 = 0;
 
             if (InputData != "" && _modelMemories.Count > 0)
             {
                 str = _modelMemories[0].Memory;
                 value = double.Parse(str);
-                result = arithmetic.Subtract(value, value);
-                InputData = result.ToString();
+                value2 = double.Parse(InputData);
+                result = arithmetic.Subtract(value, value2);
                 _modelMemories.RemoveAt(0);
-                _modelMemories.Insert(0, new ModelMemory { Memory = InputData });
+                _modelMemories.Insert(0, new ModelMemory { Memory = string.Format("{0:0.00#}", result) });
             }
         }
         private void ClearMemory(string paramerter)

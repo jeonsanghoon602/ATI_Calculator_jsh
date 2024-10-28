@@ -67,13 +67,12 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
         </Style>
     </Window.Resources>
-
-
+    
     <Grid MinWidth="550" MinHeight="500">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -184,7 +183,7 @@
             </Button>
             <Button Tag ="Button_Negative" Grid.Column="0" Grid.Row="5" Command ="{Binding DataExpendCalculator}" CommandParameter="Negative" Style="{StaticResource BtnStyle3}">+/-</Button>
             <Button Tag ="Button_0" Grid.Column="1" Grid.Row="5" Command ="{Binding DataInsert}" CommandParameter="0" Style="{StaticResource BtnStyle3}">0</Button>
-            <Button Tag ="Button_Dot" Grid.Column="2" Grid.Row="5" Command ="{Binding DataExpendCalculator}" CommandParameter="Dot" Style="{StaticResource BtnStyle3}">.</Button>
+            <Button Tag ="Button_Dot" Grid.Column="2" Grid.Row="5" Command ="{Binding DataDotInsert}" CommandParameter="." Style="{StaticResource BtnStyle3}">.</Button>
             <Button Tag ="Button_Equal" Grid.Column="3" Grid.Row="5" Command ="{Binding DataCalculator}" Style="{StaticResource BtnStyle}">
                 <Image Width="15" Height="15" Source="/Resources/equals_icon.png" />
             </Button>

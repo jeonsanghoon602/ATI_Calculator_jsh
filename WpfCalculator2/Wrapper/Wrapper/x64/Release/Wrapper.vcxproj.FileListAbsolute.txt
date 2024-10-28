@@ -2,3 +2,7 @@ C:\Users\sanghoon\source\repos\WpfCalculator2\x64\Release\Ijwhost.dll
 C:\Users\sanghoon\source\repos\WpfCalculator2\x64\Release\Wrapper.deps.json
 C:\Users\sanghoon\source\repos\WpfCalculator2\x64\Release\Wrapper.runtimeconfig.json
 C:\Users\sanghoon\source\repos\WpfCalculator2\Wrapper\Wrapper\x64\Release\Wrapper.genruntimeconfig.cache
+C:\Users\sanghoon\Documents\GitHub\ATI_Calculator_jsh\ATI_Calculator_jsh\WpfCalculator2\x64\Release\Ijwhost.dll
+C:\Users\sanghoon\Documents\GitHub\ATI_Calculator_jsh\ATI_Calculator_jsh\WpfCalculator2\x64\Release\Wrapper.deps.json
+C:\Users\sanghoon\Documents\GitHub\ATI_Calculator_jsh\ATI_Calculator_jsh\WpfCalculator2\x64\Release\Wrapper.runtimeconfig.json
+C:\Users\sanghoon\Documents\GitHub\ATI_Calculator_jsh\ATI_Calculator_jsh\WpfCalculator2\Wrapper\Wrapper\x64\Release\Wrapper.genruntimeconfig.cache

@@ -28,7 +28,7 @@ namespace WpfCalculator1
         {
             //데이터 인풋
 
-            if (viewmodel.DisplayData == "0" && viewmodel.DisplayData.Length < 2)
+            if (viewmodel.DisplayData == "0" && viewmodel.DisplayData.Length < 2 && parameter.ToString() != ".")
             {
                 viewmodel.InputData = viewmodel.DisplayData = string.Empty;
                 viewmodel.InputData += parameter;
@@ -36,7 +36,7 @@ namespace WpfCalculator1
             }
             else
             {
-                if (viewmodel.InputData == "0")
+                if (viewmodel.InputData == "0" && parameter.ToString() != ".")
                 {
                     viewmodel.InputData = string.Empty;
                     viewmodel.InputData += parameter;
@@ -47,6 +47,32 @@ namespace WpfCalculator1
                     viewmodel.DisplayData += parameter;
                 }
             }
+        }
+    }
+
+    class DataDotInsert : CommandBase
+    {
+        private MainWindowViewModels viewmodel;
+
+        public DataDotInsert(MainWindowViewModels viewmodel)
+        {
+            this.viewmodel = viewmodel;
+        }
+        public override bool CanExecute(object parameter)
+        {
+            bool result = viewmodel.InputData.Contains(".");
+            return !result;
+        }
+
+        public override void Execute(object parameter)
+        {
+            //데이터 인풋
+            
+
+            viewmodel.InputData += parameter;
+            viewmodel.DisplayData += parameter;
+            
+            
         }
     }
 
@@ -223,12 +249,18 @@ namespace WpfCalculator1
                 result = datalist[j + 1];
             }
 
-            _history = string.Format("{0}{1}{2}", viewmodel.DisplayData, "=", result.ToString());
+            if (viewmodel.Oper == "")
+            {
+                result = double.Parse(viewmodel.InputData);
+            }
+
+            _history = string.Format("{0}{1}{2}", viewmodel.DisplayData, "=", result);
+            viewmodel.InputData = viewmodel.DisplayData = string.Format("{0}",result);
             viewmodel.AddHistory(_history);
-            viewmodel.InputData = viewmodel.DisplayData = result.ToString();
             viewmodel.Firstdata = 0;
-            //데이터 출력
-        }
+     
+        //데이터 출력
+    }
 
         private double Myadd(double _int1, double _int2)
         {
@@ -334,10 +366,6 @@ namespace WpfCalculator1
                 {
                     result = MyNegative(pfirstdata);
                 }
-                else if (Expend.Contains("Dot"))
-                {
-                    result = MyDot(pfirstdata);
-                }
             }
             else if (viewmodel.InputData == "")
             {
@@ -347,17 +375,17 @@ namespace WpfCalculator1
 
             if (Expend.Contains("Percent"))
             {
-                _history = string.Format("{0}({1},{2})={3}", Expend, viewmodel.Firstdata,viewmodel.InputData,result.ToString());
-                viewmodel.DisplayData = string.Format("{0}{1}{2}",viewmodel.Firstdata,viewmodel.Oper,result.ToString()); ;
+                _history = string.Format("{0}({1},{2})={3}", Expend, viewmodel.Firstdata, viewmodel.InputData, result);
+                viewmodel.DisplayData = string.Format("{0}{1}{2}", viewmodel.Firstdata, viewmodel.Oper, result); ;
                 viewmodel.AddHistory(_history);
             }
             else
             {
-                _history = string.Format("{0}({1}){2}{3}", Expend, viewmodel.InputData, "=", result.ToString());
+                _history = string.Format("{0}({1}){2}{3}", Expend, viewmodel.InputData, "=", result);
                 viewmodel.DisplayData = "0";
                 viewmodel.AddHistory(_history);
             }
-            viewmodel.InputData = result.ToString();
+            viewmodel.InputData = string.Format("{0}", result);
             viewmodel.Firstdata = 0;
             //데이터 출력
         }
@@ -385,13 +413,9 @@ namespace WpfCalculator1
         }
         private double MyNegative(double _int1)
         {
-            double value = arithmetic.Multiply(_int1 , -1);
-            return (double)value;
-        }
-        private double MyDot(double _int1)
-        {
-            double value = arithmetic.Divide(_int1,10);
+            double value = arithmetic.Multiply(_int1, -1);
             return (double)value;
         }
 
     }
+}

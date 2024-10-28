@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\sanghoon\source\repos\WpfCalculator2\x64\Release\Wrapper.runtimeconfig.json</FullPath>
+      <FullPath>C:\Users\sanghoon\Documents\GitHub\ATI_Calculator_jsh\ATI_Calculator_jsh\WpfCalculator2\x64\Release\Wrapper.runtimeconfig.json</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\sanghoon\source\repos\WpfCalculator2\x64\Release\Wrapper.dll</FullPath>
+      <FullPath>C:\Users\sanghoon\Documents\GitHub\ATI_Calculator_jsh\ATI_Calculator_jsh\WpfCalculator2\x64\Release\Wrapper.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
