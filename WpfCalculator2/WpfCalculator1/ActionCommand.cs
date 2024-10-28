@@ -28,7 +28,7 @@ namespace WpfCalculator1
         {
             //데이터 인풋
 
-            if (viewmodel.InputData == "0")
+            if (viewmodel.DisplayData == "0" && viewmodel.DisplayData.Length < 2)
             {
                 viewmodel.InputData = viewmodel.DisplayData = string.Empty;
                 viewmodel.InputData += parameter;
@@ -36,10 +36,17 @@ namespace WpfCalculator1
             }
             else
             {
-                viewmodel.InputData += parameter;
-                viewmodel.DisplayData += parameter;
+                if (viewmodel.InputData == "0")
+                {
+                    viewmodel.InputData = string.Empty;
+                    viewmodel.InputData += parameter;
+                }
+                else
+                {
+                    viewmodel.InputData += parameter;
+                    viewmodel.DisplayData += parameter;
+                }
             }
-
         }
     }
 
@@ -67,6 +74,7 @@ namespace WpfCalculator1
             }
             else
             {
+                viewmodel.DisplayData = string.Format("{0}{1}", viewmodel.Firstdata, viewmodel.Oper);
                 viewmodel.InputData = "0";
             }
             //데이터 지우기
@@ -83,7 +91,7 @@ namespace WpfCalculator1
         }
         public override bool CanExecute(object parameter)
         {
-            return viewmodel.DisplayData.Length > 0;
+            return viewmodel.InputData.Length > 0;
         }
 
         public override void Execute(object parameter)
@@ -110,6 +118,7 @@ namespace WpfCalculator1
         public override void Execute(object parameter)
         {
             viewmodel.InputData = viewmodel.DisplayData = "0";
+            viewmodel.Oper = "";
             viewmodel.Firstdata = 0;
             //데이터 클리어
         }
@@ -187,14 +196,14 @@ namespace WpfCalculator1
             {
                 if (opreatelist[j] == '/')
                 {
-                    datalist[j] = MyDivde((int)datalist[j], (int)datalist[j + 1]);
+                    datalist[j] = MyDivde(datalist[j], datalist[j + 1]);
                     datalist[j + 1] = 0;
                     opreatelist[j] = '+';
 
                 }
                 else if (opreatelist[j] == '*')
                 {
-                    datalist[j] = Mymultiply((int)datalist[j], (int)datalist[j + 1]);
+                    datalist[j] = Mymultiply(datalist[j], datalist[j + 1]);
                     datalist[j + 1] = 0;
                     opreatelist[j] = '+';
                 }
@@ -205,11 +214,11 @@ namespace WpfCalculator1
             {
                 if (opreatelist[j] == '+')
                 {
-                    datalist[j + 1] = Myadd((int)datalist[j], (int)datalist[j + 1]);
+                    datalist[j + 1] = Myadd(datalist[j], datalist[j + 1]);
                 }
                 else if (opreatelist[j] == '-')
                 {
-                    datalist[j + 1] = Mysubtract((int)datalist[j], (int)datalist[j + 1]);
+                    datalist[j + 1] = Mysubtract(datalist[j], datalist[j + 1]);
                 }
                 result = datalist[j + 1];
             }
@@ -239,11 +248,6 @@ namespace WpfCalculator1
         private double MyDivde(double _int1, double _int2)
         {
             double value = arithmetic.Divide(_int1, _int2);
-            return (double)value;
-        }
-        private double MyPercent(double _int1, double _int2)
-        {
-            double value = arithmetic.Percent(_int1, _int2);
             return (double)value;
         }
 
@@ -326,6 +330,14 @@ namespace WpfCalculator1
                 {
                     result = MyPercent(pfirstdata, penddata);
                 }
+                else if (Expend.Contains("Negative"))
+                {
+                    result = MyNegative(pfirstdata);
+                }
+                else if (Expend.Contains("Dot"))
+                {
+                    result = MyDot(pfirstdata);
+                }
             }
             else if (viewmodel.InputData == "")
             {
@@ -335,14 +347,14 @@ namespace WpfCalculator1
 
             if (Expend.Contains("Percent"))
             {
-                _history = string.Format("{0}({1}){2}{3}", Expend, viewmodel.DisplayData, "=", result.ToString());
-                viewmodel.DisplayData = string.Format("{0}{1}{2}", penddata, viewmodel.Oper, result);
+                _history = string.Format("{0}({1},{2})={3}", Expend, viewmodel.Firstdata,viewmodel.InputData,result.ToString());
+                viewmodel.DisplayData = string.Format("{0}{1}{2}",viewmodel.Firstdata,viewmodel.Oper,result.ToString()); ;
                 viewmodel.AddHistory(_history);
             }
             else
             {
-                _history = string.Format("{0}({1}){2}{3}", Expend, viewmodel.DisplayData, "=", result.ToString());
-                viewmodel.DisplayData = string.Format("{0} ({1})", Expend, viewmodel.DisplayData);
+                _history = string.Format("{0}({1}){2}{3}", Expend, viewmodel.InputData, "=", result.ToString());
+                viewmodel.DisplayData = "0";
                 viewmodel.AddHistory(_history);
             }
             viewmodel.InputData = result.ToString();
@@ -371,7 +383,15 @@ namespace WpfCalculator1
             double value = arithmetic.Square(_int1);
             return (double)value;
         }
+        private double MyNegative(double _int1)
+        {
+            double value = arithmetic.Multiply(_int1 , -1);
+            return (double)value;
+        }
+        private double MyDot(double _int1)
+        {
+            double value = arithmetic.Divide(_int1,10);
+            return (double)value;
+        }
 
     }
-
-}

@@ -21,8 +21,6 @@ namespace WpfCalculator1.ViewModels
 
         private string inputData = "";
         private string displayData = "";
-        private string AllData = "";
-        private string memorydata = "";
         private ObservableCollection<ModelMemory> _modelMemories;
         private ObservableCollection<ModelHistory> _modelHistories;
         private ModelMemory _selectedmemory;
@@ -125,6 +123,13 @@ namespace WpfCalculator1.ViewModels
                 OnPropertyChanged(nameof(SelectedMemory));
             }
         }
+        public void AddHistory(string paramerter)
+        {
+            if (InputData != "")
+            {
+                _modelHistories.Add(new ModelHistory { History = paramerter });
+            }
+        }
 
         private void SaveMemory(string paramerter)
         {
@@ -140,7 +145,7 @@ namespace WpfCalculator1.ViewModels
             string str = "";
             double value = 0;
 
-            if (InputData != "")
+            if (InputData != "" && _modelMemories.Count > 0)
             {
                 str = _modelMemories[0].Memory;
                 value = double.Parse(str);
@@ -157,7 +162,7 @@ namespace WpfCalculator1.ViewModels
             string str = "";
             double value = 0;
 
-            if (InputData != "")
+            if (InputData != "" && _modelMemories.Count > 0)
             {
                 str = _modelMemories[0].Memory;
                 value = double.Parse(str);
@@ -172,12 +177,5 @@ namespace WpfCalculator1.ViewModels
             _modelMemories.Clear();
         }
 
-        public void AddHistory(string paramerter)
-        {
-            if (InputData != "")
-            {
-                _modelHistories.Add(new ModelHistory { History = paramerter });
-            }
-        }
     }
 }

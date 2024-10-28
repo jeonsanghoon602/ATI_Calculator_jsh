@@ -13,9 +13,7 @@ namespace WpfCalculator1.Models
     }
     public class ModelHistory
     {
-
         public string History { get; set; } = default!;
-
     }
 
 }

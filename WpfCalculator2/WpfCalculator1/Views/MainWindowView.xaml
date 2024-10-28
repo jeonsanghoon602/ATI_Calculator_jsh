@@ -67,6 +67,10 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
     </Window.Resources>
 
 
@@ -87,7 +91,7 @@
                 <ListView ItemsSource="{Binding Memory}" 
                   SelectedItem="{Binding SelectedMemory, Mode=TwoWay}">
                     <ListView.View>
-                        <GridView>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
                             <GridViewColumn DisplayMemberBinding="{Binding Memory}" Width="150" />
                         </GridView>
                     </ListView.View>
@@ -96,7 +100,7 @@
             <TabItem Header="History">
                 <ListView ItemsSource="{Binding Hisory}">
                     <ListView.View>
-                        <GridView>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
                             <GridViewColumn DisplayMemberBinding="{Binding History}" Width="150" />
                         </GridView>
                     </ListView.View>
@@ -108,11 +112,7 @@
             <Button Width="50" Height="20" Style="{StaticResource BtnStyle2}" DockPanel.Dock="Left">
 
             </Button>
-            <Button Width="50" Height="20" Style="{StaticResource BtnStyle2}" DockPanel.Dock="Left">
-
-            </Button>
-            <Button Width="50" Height="20" Style="{StaticResource BtnStyle2}" DockPanel.Dock="Right">
-                <Image Source="/Resources/clock.png" />
+                <Button Width="50" Height="20" Style="{StaticResource BtnStyle2}" DockPanel.Dock="Left">
             </Button>
         </DockPanel>
         <TextBlock x:Name="lastTextBlock" HorizontalAlignment= "Right" Grid.Row="1" Height="100" Margin="10" FontSize="15" Text="{Binding DisplayData}"/>
@@ -182,9 +182,9 @@
             <Button Tag ="Button_Plus" Grid.Column="3" Grid.Row="4" Command ="{Binding DataOperator}" CommandParameter="+" Style="{StaticResource BtnStyle}">
                 +
             </Button>
-            <Button Tag ="Button_Negative" Grid.Column="0" Grid.Row="5" Style="{StaticResource BtnStyle3}">+/-</Button>
+            <Button Tag ="Button_Negative" Grid.Column="0" Grid.Row="5" Command ="{Binding DataExpendCalculator}" CommandParameter="Negative" Style="{StaticResource BtnStyle3}">+/-</Button>
             <Button Tag ="Button_0" Grid.Column="1" Grid.Row="5" Command ="{Binding DataInsert}" CommandParameter="0" Style="{StaticResource BtnStyle3}">0</Button>
-            <Button Tag ="Button_Dot" Grid.Column="2" Grid.Row="5" Style="{StaticResource BtnStyle3}">.</Button>
+            <Button Tag ="Button_Dot" Grid.Column="2" Grid.Row="5" Command ="{Binding DataExpendCalculator}" CommandParameter="Dot" Style="{StaticResource BtnStyle3}">.</Button>
             <Button Tag ="Button_Equal" Grid.Column="3" Grid.Row="5" Command ="{Binding DataCalculator}" Style="{StaticResource BtnStyle}">
                 <Image Width="15" Height="15" Source="/Resources/equals_icon.png" />
             </Button>
