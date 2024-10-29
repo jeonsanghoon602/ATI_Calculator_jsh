@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:WpfCalculator1.Views" xmlns:viewmodels="clr-namespace:WpfCalculator1.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModels}"
         mc:Ignorable="d"
         Title="계산기" Height="600" Width="500" MinWidth="600" MinHeight="600">
-
     <Window.Resources>
         <Style x:Key="BtnStyle" TargetType="Button">
             <Setter Property="Template">
